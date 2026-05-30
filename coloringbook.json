@@ -1,0 +1,172 @@
+{
+  "categories": [
+    {
+      "id": "hellokitty",
+      "name": "Hello Kitty",
+      "items": [
+        {
+          "id": "hellokitty-01",
+          "name": "Hello Kitty wearing a graduation cap and gown",
+          "url": "coloringbook/hellokitty/hellokitty-01-graduation-cap.png",
+          "thumbnail": "coloringbook/hellokitty/hellokitty-01-graduation-cap.png"
+        },
+        {
+          "id": "hellokitty-02",
+          "name": "Hello Kitty wearing a chef hat",
+          "url": "coloringbook/hellokitty/hellokitty-02-chef-hat.png",
+          "thumbnail": "coloringbook/hellokitty/hellokitty-02-chef-hat.png"
+        },
+        {
+          "id": "hellokitty-03",
+          "name": "Hello Kitty taking a relaxing bubble bath",
+          "url": "coloringbook/hellokitty/hellokitty-03-bubble-bath.png",
+          "thumbnail": "coloringbook/hellokitty/hellokitty-03-bubble-bath.png"
+        },
+        {
+          "id": "hellokitty-04",
+          "name": "Hello Kitty sitting on a log with a squirrel friend",
+          "url": "coloringbook/hellokitty/hellokitty-04-squirrel-friend.png",
+          "thumbnail": "coloringbook/hellokitty/hellokitty-04-squirrel-friend.png"
+        },
+        {
+          "id": "hellokitty-05",
+          "name": "Hello Kitty sitting at a school desk",
+          "url": "coloringbook/hellokitty/hellokitty-05-school-desk.png",
+          "thumbnail": "coloringbook/hellokitty/hellokitty-05-school-desk.png"
+        },
+        {
+          "id": "hellokitty-06",
+          "name": "Hello Kitty sitting in a small boat on a lake",
+          "url": "coloringbook/hellokitty/hellokitty-06-boat-on-lake.png",
+          "thumbnail": "coloringbook/hellokitty/hellokitty-06-boat-on-lake.png"
+        },
+        {
+          "id": "hellokitty-07",
+          "name": "Hello Kitty running and chasing butterflies in a flower field",
+          "url": "coloringbook/hellokitty/hellokitty-07-chasing-butterflies.png",
+          "thumbnail": "coloringbook/hellokitty/hellokitty-07-chasing-butterflies.png"
+        }
+      ]
+    },
+    {
+      "id": "spiderman",
+      "name": "Spider-Man",
+      "items": [
+        {
+          "id": "spiderman-01",
+          "name": "Spider-Man relaxing in a garden",
+          "url": "coloringbook/spiderman/spiderman-01-garden-relax.png",
+          "thumbnail": "coloringbook/spiderman/spiderman-01-garden-relax.png"
+        },
+        {
+          "id": "spiderman-02",
+          "name": "Chibi Spider-Man holding ice cream",
+          "url": "coloringbook/spiderman/spiderman-02-ice-cream.png",
+          "thumbnail": "coloringbook/spiderman/spiderman-02-ice-cream.png"
+        },
+        {
+          "id": "spiderman-03",
+          "name": "Spider-Man having a picnic",
+          "url": "coloringbook/spiderman/spiderman-03-picnic.png",
+          "thumbnail": "coloringbook/spiderman/spiderman-03-picnic.png"
+        },
+        {
+          "id": "spiderman-04",
+          "name": "Spider-Man in an Easter bunny costume",
+          "url": "coloringbook/spiderman/spiderman-04-easter-bunny.png",
+          "thumbnail": "coloringbook/spiderman/spiderman-04-easter-bunny.png"
+        },
+        {
+          "id": "spiderman-05",
+          "name": "Spider-Man taking a bubble bath",
+          "url": "coloringbook/spiderman/spiderman-05-bubble-bath.png",
+          "thumbnail": "coloringbook/spiderman/spiderman-05-bubble-bath.png"
+        }
+      ]
+    },
+    {
+      "id": "pikachu",
+      "name": "Pikachu",
+      "items": [
+        {
+          "id": "pikachu-01",
+          "name": "Pikachu standing and smiling",
+          "url": "coloringbook/pikachu/pikachu-01-standing.png",
+          "thumbnail": "coloringbook/pikachu/pikachu-01-standing.png"
+        },
+        {
+          "id": "pikachu-02",
+          "name": "Pikachu sitting with a happy face",
+          "url": "coloringbook/pikachu/pikachu-02-sitting.png",
+          "thumbnail": "coloringbook/pikachu/pikachu-02-sitting.png"
+        },
+        {
+          "id": "pikachu-03",
+          "name": "Pikachu jumping in the air",
+          "url": "coloringbook/pikachu/pikachu-03-jumping.png",
+          "thumbnail": "coloringbook/pikachu/pikachu-03-jumping.png"
+        },
+        {
+          "id": "pikachu-04",
+          "name": "Pikachu sleeping peacefully",
+          "url": "coloringbook/pikachu/pikachu-04-sleeping.png",
+          "thumbnail": "coloringbook/pikachu/pikachu-04-sleeping.png"
+        },
+        {
+          "id": "pikachu-05",
+          "name": "Pikachu with hearts around its head",
+          "url": "coloringbook/pikachu/pikachu-05-hearts.png",
+          "thumbnail": "coloringbook/pikachu/pikachu-05-hearts.png"
+        }
+      ]
+    },
+    {
+      "id": "labubu",
+      "name": "Labubu",
+      "items": [
+        {
+          "id": "labubu-01",
+          "name": "Labubu riding a bicycle",
+          "url": "coloringbook/labubu/labubu-01-bicycle.png",
+          "thumbnail": "coloringbook/labubu/labubu-01-bicycle.png"
+        },
+        {
+          "id": "labubu-02",
+          "name": "Labubu in a burger outfit",
+          "url": "coloringbook/labubu/labubu-02-burger-outfit.png",
+          "thumbnail": "coloringbook/labubu/labubu-02-burger-outfit.png"
+        },
+        {
+          "id": "labubu-03",
+          "name": "Labubu with a bow tie",
+          "url": "coloringbook/labubu/labubu-03-bow-tie.png",
+          "thumbnail": "coloringbook/labubu/labubu-03-bow-tie.png"
+        },
+        {
+          "id": "labubu-04",
+          "name": "Labubu going on a picnic",
+          "url": "coloringbook/labubu/labubu-04-picnic.png",
+          "thumbnail": "coloringbook/labubu/labubu-04-picnic.png"
+        },
+        {
+          "id": "labubu-05",
+          "name": "Labubu wearing a sweater",
+          "url": "coloringbook/labubu/labubu-05-sweater.png",
+          "thumbnail": "coloringbook/labubu/labubu-05-sweater.png"
+        },
+        {
+          "id": "labubu-06",
+          "name": "Labubu flying on a broomstick",
+          "url": "coloringbook/labubu/labubu-06-broomstick.png",
+          "thumbnail": "coloringbook/labubu/labubu-06-broomstick.png"
+        },
+        {
+          "id": "labubu-07",
+          "name": "Labubu playing with small animals",
+          "url": "coloringbook/labubu/labubu-07-small-animals.png",
+          "thumbnail": "coloringbook/labubu/labubu-07-small-animals.png"
+        }
+      ]
+    }
+  ]
+}
