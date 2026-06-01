@@ -195,6 +195,29 @@ let DATASETS = [];
 let current = null;        // key dataset hiện tại
 let dsType = 'flat';       // 'categories' | 'flat'
 let dsMedia = '';          // thư mục media gốc của dataset hiện tại
+
+// server.js phục vụ luôn file media (kể cả khi đi qua ngrok) nên dùng đường dẫn tương đối.
+function mediaURL(u) { return u; }
+
+// Header chung: bỏ qua trang cảnh báo của ngrok + mật khẩu (nếu server bật ADMIN_PASSWORD).
+function baseHeaders() {
+  const h = { 'ngrok-skip-browser-warning': 'true' };
+  const pw = sessionStorage.getItem('adminpw');
+  if (pw) h['x-admin-password'] = pw;
+  return h;
+}
+async function apiFetch(path, opts = {}) {
+  opts.headers = { ...(opts.headers || {}), ...baseHeaders() };
+  let res = await fetch(path, opts);
+  if (res.status === 401) {
+    const pw = prompt('Trang yêu cầu mật khẩu quản trị:');
+    if (pw === null) return res;
+    sessionStorage.setItem('adminpw', pw);
+    opts.headers = { ...(opts.headers || {}), ...baseHeaders() };
+    res = await fetch(path, opts);
+  }
+  return res;
+}
 let model = null;          // dữ liệu đang chỉnh: {categories:[...]} hoặc [...]
 let dirty = false;
 let editCtx = null;        // {catIndex, itemIndex} hoặc null khi thêm mới
@@ -203,7 +226,7 @@ const collapsed = {};
 
 // ---------- Khởi tạo ----------
 async function init() {
-  DATASETS = await (await fetch('/api/datasets')).json();
+  DATASETS = await (await apiFetch('/api/datasets')).json();
   const tabs = document.getElementById('tabs');
   tabs.innerHTML = DATASETS.map(d =>
     `<div class="tab" data-key="${d.key}" onclick="switchDataset('${d.key}')">${d.label}</div>`).join('');
@@ -216,7 +239,7 @@ async function switchDataset(key) {
   current = key;
   document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.key === key));
   dsMedia = (DATASETS.find(d => d.key === key) || {}).media || '';
-  const res = await (await fetch('/api/data/' + key)).json();
+  const res = await (await apiFetch('/api/data/' + key)).json();
   if (res.error) return toast(res.error, 'err');
   dsType = res.type;
   model = res.data;
@@ -300,7 +323,7 @@ function renderItems(container, items, q, ci) {
     if (!matches(it, q)) return '';
     const warn = looksWrong(it);
     const thumb = it.thumbnail
-      ? `<img class="thumb" src="${esc(it.thumbnail)}" onerror="this.replaceWith(brokenThumb())">`
+      ? `<img class="thumb" src="${esc(mediaURL(it.thumbnail))}" onerror="this.replaceWith(brokenThumb())">`
       : `<div class="thumb">—</div>`;
     return `
       <div class="item">
@@ -380,10 +403,11 @@ function previewInto(boxId, srcVal) {
   const box = document.getElementById(boxId);
   const v = (srcVal || '').trim();
   if (!v) { box.classList.remove('show'); box.innerHTML = ''; return; }
+  const src = esc(mediaURL(v));
   let html = '';
-  if (/\.(mp4|webm|mov)$/i.test(v)) html = `<video src="${esc(v)}" controls preload="metadata"></video>`;
-  else if (/\.(mp3|wav|m4a)$/i.test(v)) html = `<audio src="${esc(v)}" controls></audio>`;
-  else if (/\.(png|jpg|jpeg|gif|webp|svg)$/i.test(v)) html = `<img src="${esc(v)}" onerror="this.parentNode.innerHTML='<div style=padding:14px;color:#8b91a3>⚠ Không tải được</div>'">`;
+  if (/\.(mp4|webm|mov)$/i.test(v)) html = `<video src="${src}" controls preload="metadata"></video>`;
+  else if (/\.(mp3|wav|m4a)$/i.test(v)) html = `<audio src="${src}" controls></audio>`;
+  else if (/\.(png|jpg|jpeg|gif|webp|svg)$/i.test(v)) html = `<img src="${src}" onerror="this.parentNode.innerHTML='<div style=padding:14px;color:#8b91a3>⚠ Không tải được</div>'">`;
   else { box.classList.remove('show'); box.innerHTML = ''; return; }
   box.innerHTML = html; box.classList.add('show');
 }
@@ -408,8 +432,11 @@ async function uploadFile(input, targetField) {
   const btn = document.getElementById(btnId);
   btn.classList.add('busy'); btn.textContent = '⏳ Đang tải...';
   try {
-    const q = '?dir=' + encodeURIComponent(dir) + '&name=' + encodeURIComponent(file.name);
-    const res = await fetch('/api/upload' + q, { method: 'POST', body: file });
+    const data = await fileToBase64(file);
+    const res = await apiFetch('/api/upload', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ dir, name: file.name, data }),
+    });
     const j = await res.json();
     if (j.ok) {
       document.getElementById(targetField).value = j.path;
@@ -422,6 +449,15 @@ async function uploadFile(input, targetField) {
     } else toast(j.error || 'Tải lên thất bại', 'err');
   } catch (e) { toast('Lỗi tải lên: ' + e.message, 'err'); }
   btn.classList.remove('busy'); btn.textContent = '📁 Tải lên';
+}
+
+function fileToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onload = () => resolve(String(r.result).split(',')[1]);
+    r.onerror = reject;
+    r.readAsDataURL(file);
+  });
 }
 
 function saveItem() {
@@ -497,7 +533,7 @@ function deleteCategory(ci) {
 async function saveData() {
   document.getElementById('saveBtn').disabled = true;
   try {
-    const res = await fetch('/api/data/' + current, {
+    const res = await apiFetch('/api/data/' + current, {
       method: 'PUT', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ data: model }),
     });

@@ -12,6 +12,8 @@ const url = require('url');
 
 const ROOT = __dirname;
 const PORT = process.env.PORT || 4321;
+// Mật khẩu tuỳ chọn (chỉ bật khi đặt ADMIN_PASSWORD). Hữu ích khi mở ra ngoài qua ngrok.
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '';
 
 // Các bộ dữ liệu cho phép chỉnh sửa. type: 'categories' | 'flat'
 // media: thư mục gốc chứa file media của bộ dữ liệu đó.
@@ -48,25 +50,18 @@ function sendJson(res, status, obj) {
 function readBody(req) {
   return new Promise((resolve, reject) => {
     let data = '';
-    req.on('data', (c) => { data += c; if (data.length > 50e6) req.destroy(); });
+    req.on('data', (c) => { data += c; if (data.length > 450e6) req.destroy(); });
     req.on('end', () => resolve(data));
     req.on('error', reject);
   });
 }
 
-// Đọc body nhị phân (cho upload file media). Tối đa 300MB.
-function readBinary(req) {
-  return new Promise((resolve, reject) => {
-    const chunks = [];
-    let size = 0;
-    req.on('data', (c) => {
-      size += c.length;
-      if (size > 300e6) { req.destroy(); reject(new Error('File quá lớn (>300MB)')); return; }
-      chunks.push(c);
-    });
-    req.on('end', () => resolve(Buffer.concat(chunks)));
-    req.on('error', reject);
-  });
+// Trả false (và gửi 401) nếu bật mật khẩu mà request không khớp.
+function checkAuth(req, res) {
+  if (!ADMIN_PASSWORD) return true;
+  if ((req.headers['x-admin-password'] || '') === ADMIN_PASSWORD) return true;
+  sendJson(res, 401, { error: 'Sai hoặc thiếu mật khẩu' });
+  return false;
 }
 
 function sanitizeName(name) {
@@ -112,10 +107,15 @@ const server = http.createServer(async (req, res) => {
   }
 
   // ---- Upload file media ----
-  // POST /api/upload?dir=<thư mục đích>&name=<tên file>   (body = nội dung file nhị phân)
+  // POST /api/upload   body JSON: { dir, name, data (base64) }
   if (pathname === '/api/upload' && req.method === 'POST') {
-    const dir = (parsed.query.dir || '').replace(/^\/+|\/+$/g, '');
-    const name = sanitizeName(parsed.query.name);
+    if (!checkAuth(req, res)) return;
+    let payload;
+    try { payload = JSON.parse(await readBody(req)); }
+    catch (e) { return sendJson(res, 400, { error: 'Body không phải JSON hợp lệ' }); }
+    const dir = (payload.dir || '').replace(/^\/+|\/+$/g, '');
+    const name = sanitizeName(payload.name);
+    if (!dir || !payload.data) return sendJson(res, 400, { error: 'Thiếu dir hoặc data' });
     const topFolder = dir.split('/')[0];
     if (!ALLOWED_MEDIA.includes(topFolder)) {
       return sendJson(res, 403, { error: 'Thư mục không được phép: ' + dir });
@@ -123,11 +123,11 @@ const server = http.createServer(async (req, res) => {
     const targetDir = path.join(ROOT, dir);
     if (!targetDir.startsWith(ROOT)) return sendJson(res, 403, { error: 'Đường dẫn không hợp lệ' });
     try {
-      const buf = await readBinary(req);
+      const buf = Buffer.from(payload.data, 'base64');
       fs.mkdirSync(targetDir, { recursive: true });
       let finalName = name;
       // Nếu trùng tên thì thêm hậu tố -1, -2... để không ghi đè file khác
-      if (fs.existsSync(path.join(targetDir, finalName)) && parsed.query.overwrite !== '1') {
+      if (fs.existsSync(path.join(targetDir, finalName)) && !payload.overwrite) {
         const ext = path.extname(name);
         const base = name.slice(0, name.length - ext.length);
         let i = 1;
@@ -158,6 +158,7 @@ const server = http.createServer(async (req, res) => {
     }
 
     if (req.method === 'PUT') {
+      if (!checkAuth(req, res)) return;
       const body = await readBody(req);
       let parsedBody;
       try { parsedBody = JSON.parse(body); }

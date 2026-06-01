@@ -1,0 +1,12 @@
+{
+  "name": "fakecalldata-admin",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Trang quản lý dữ liệu CDN (Fake Call / Coloring Book / Ringtone / Wallpaper)",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
