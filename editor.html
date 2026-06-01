@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quản lý dữ liệu CDN</title>
+<style>
+  :root {
+    --bg: #0f1117; --panel: #181b24; --panel2: #1f2330; --border: #2a2f3e;
+    --text: #e6e8ee; --muted: #8b91a3; --accent: #5b8cff; --accent2: #3a6bff;
+    --danger: #ff5d6c; --danger2: #e0414f; --ok: #34d399; --warn: #fbbf24;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg); color: var(--text); font-size: 14px; }
+  header { position: sticky; top: 0; z-index: 20; background: var(--panel);
+    border-bottom: 1px solid var(--border); padding: 12px 20px; display: flex;
+    align-items: center; gap: 16px; flex-wrap: wrap; }
+  header h1 { font-size: 16px; margin: 0; font-weight: 600; }
+  .tabs { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tab { padding: 7px 14px; border-radius: 8px; background: var(--panel2);
+    border: 1px solid var(--border); cursor: pointer; color: var(--muted); font-weight: 500; }
+  .tab.active { background: var(--accent2); color: #fff; border-color: var(--accent2); }
+  .spacer { flex: 1; }
+  .status { font-size: 12px; color: var(--muted); min-width: 80px; text-align: right; }
+  .status.dirty { color: var(--warn); }
+  .status.saved { color: var(--ok); }
+  button { font-family: inherit; font-size: 13px; cursor: pointer; border-radius: 8px;
+    border: 1px solid var(--border); background: var(--panel2); color: var(--text);
+    padding: 7px 12px; transition: .12s; }
+  button:hover { border-color: var(--accent); }
+  button.primary { background: var(--accent2); border-color: var(--accent2); color: #fff; font-weight: 600; }
+  button.primary:hover { background: var(--accent); }
+  button.danger { background: transparent; border-color: transparent; color: var(--danger); padding: 4px 8px; }
+  button.danger:hover { background: rgba(255,93,108,.12); }
+  button.ghost { background: transparent; border-color: transparent; color: var(--muted); padding: 4px 8px; }
+  button.ghost:hover { color: var(--text); background: var(--panel2); }
+  button:disabled { opacity: .4; cursor: not-allowed; }
+  main { padding: 20px; max-width: 1100px; margin: 0 auto; }
+  .toolbar { display: flex; gap: 10px; align-items: center; margin-bottom: 18px; flex-wrap: wrap; }
+  .search { flex: 1; min-width: 180px; padding: 9px 12px; border-radius: 8px;
+    border: 1px solid var(--border); background: var(--panel); color: var(--text); }
+  .count { color: var(--muted); font-size: 13px; }
+
+  .category { background: var(--panel); border: 1px solid var(--border);
+    border-radius: 12px; margin-bottom: 16px; overflow: hidden; }
+  .cat-head { display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+    background: var(--panel2); cursor: pointer; }
+  .cat-head .chev { color: var(--muted); transition: .15s; }
+  .cat-head.collapsed .chev { transform: rotate(-90deg); }
+  .cat-title { font-weight: 600; font-size: 15px; }
+  .cat-id { color: var(--muted); font-size: 12px; font-family: monospace; }
+  .cat-badge { background: var(--bg); color: var(--muted); border-radius: 20px;
+    padding: 2px 10px; font-size: 12px; }
+  .cat-actions { display: flex; gap: 4px; margin-left: auto; }
+
+  .items { padding: 10px 16px 16px; }
+  .item { display: flex; align-items: center; gap: 12px; padding: 8px;
+    border-radius: 10px; border: 1px solid transparent; }
+  .item:hover { background: var(--panel2); border-color: var(--border); }
+  .item.hidden { display: none; }
+  .thumb { width: 54px; height: 54px; border-radius: 8px; object-fit: cover;
+    background: var(--bg); flex-shrink: 0; border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center; color: var(--muted); font-size: 20px; }
+  .item-info { flex: 1; min-width: 0; }
+  .item-name { font-weight: 500; }
+  .item-meta { color: var(--muted); font-size: 12px; font-family: monospace;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .item-meta.warn { color: var(--danger); }
+  .item-actions { display: flex; gap: 2px; align-items: center; }
+  .order-btns { display: flex; flex-direction: column; }
+  .order-btns button { padding: 0 6px; font-size: 11px; line-height: 1.3; }
+
+  .empty { color: var(--muted); text-align: center; padding: 30px; }
+  .add-row { margin-top: 8px; }
+
+  /* Modal */
+  .overlay { position: fixed; inset: 0; background: rgba(0,0,0,.6); z-index: 50;
+    display: none; align-items: center; justify-content: center; padding: 20px; }
+  .overlay.show { display: flex; }
+  .modal { background: var(--panel); border: 1px solid var(--border); border-radius: 14px;
+    width: 100%; max-width: 520px; max-height: 90vh; overflow: auto; }
+  .modal h2 { margin: 0; padding: 18px 20px; font-size: 16px; border-bottom: 1px solid var(--border); }
+  .modal-body { padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+  label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 5px; font-weight: 500; }
+  input[type=text] { width: 100%; padding: 9px 11px; border-radius: 8px;
+    border: 1px solid var(--border); background: var(--bg); color: var(--text); font-size: 14px; }
+  input:focus { outline: none; border-color: var(--accent); }
+  .input-row { display: flex; gap: 8px; }
+  .input-row input { flex: 1; }
+  .pick { white-space: nowrap; flex-shrink: 0; }
+  .pick.busy { opacity: .6; pointer-events: none; }
+  .field-hint { font-size: 11px; color: var(--muted); margin-top: 4px; }
+  .preview-box { margin-top: 8px; border-radius: 8px; overflow: hidden; background: var(--bg);
+    border: 1px solid var(--border); display: none; }
+  .preview-box.show { display: block; }
+  .preview-box img, .preview-box video { width: 100%; max-height: 240px; object-fit: contain; display: block; }
+  .preview-box audio { width: 100%; }
+  .modal-foot { padding: 16px 20px; border-top: 1px solid var(--border);
+    display: flex; gap: 10px; justify-content: flex-end; }
+  .toast { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%);
+    background: var(--panel2); border: 1px solid var(--border); padding: 12px 20px;
+    border-radius: 10px; z-index: 100; opacity: 0; transition: .25s; pointer-events: none; }
+  .toast.show { opacity: 1; bottom: 32px; }
+  .toast.err { border-color: var(--danger); color: var(--danger); }
+  .toast.ok { border-color: var(--ok); color: var(--ok); }
+</style>
+</head>
+<body>
+<header>
+  <h1>🗂️ Quản lý dữ liệu</h1>
+  <div class="tabs" id="tabs"></div>
+  <div class="spacer"></div>
+  <span class="status" id="status"></span>
+  <button class="primary" id="saveBtn" onclick="saveData()" disabled>💾 Lưu</button>
+</header>
+
+<main>
+  <div class="toolbar">
+    <input class="search" id="search" placeholder="🔍 Tìm theo tên hoặc id..." oninput="render()">
+    <span class="count" id="count"></span>
+    <button id="addCatBtn" onclick="openCategoryModal()">+ Thêm danh mục</button>
+    <button id="addItemBtn" onclick="openItemModal()">+ Thêm mục</button>
+  </div>
+  <div id="content"></div>
+</main>
+
+<!-- Modal sửa/thêm item -->
+<div class="overlay" id="itemOverlay">
+  <div class="modal">
+    <h2 id="itemModalTitle">Thêm mục</h2>
+    <div class="modal-body">
+      <div>
+        <label>Tên hiển thị (name)</label>
+        <input type="text" id="f_name" oninput="onNameInput()">
+      </div>
+      <div>
+        <label>ID</label>
+        <input type="text" id="f_id">
+        <div class="field-hint">Tự tạo từ tên nếu để trống. Phải là duy nhất.</div>
+      </div>
+      <div>
+        <label>URL (đường dẫn file)</label>
+        <div class="input-row">
+          <input type="text" id="f_url" oninput="onUrlInput()">
+          <button type="button" class="pick" id="pickUrlBtn" onclick="document.getElementById('uploadUrl').click()">📁 Tải lên</button>
+        </div>
+        <input type="file" id="uploadUrl" style="display:none" onchange="uploadFile(this,'f_url')">
+        <div class="field-hint" id="urlHint"></div>
+        <div class="preview-box" id="urlPreview"></div>
+      </div>
+      <div>
+        <label>Thumbnail (để trống = null)</label>
+        <div class="input-row">
+          <input type="text" id="f_thumb" oninput="onThumbInput()">
+          <button type="button" class="pick" id="pickThumbBtn" onclick="document.getElementById('uploadThumb').click()">📁 Tải lên</button>
+        </div>
+        <input type="file" id="uploadThumb" accept="image/*" style="display:none" onchange="uploadFile(this,'f_thumb')">
+        <div class="preview-box" id="thumbPreview"></div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="ghost" onclick="closeItemModal()">Huỷ</button>
+      <button class="primary" onclick="saveItem()">Lưu mục</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal danh mục -->
+<div class="overlay" id="catOverlay">
+  <div class="modal">
+    <h2 id="catModalTitle">Thêm danh mục</h2>
+    <div class="modal-body">
+      <div>
+        <label>Tên danh mục (name)</label>
+        <input type="text" id="c_name" oninput="onCatNameInput()">
+      </div>
+      <div>
+        <label>ID</label>
+        <input type="text" id="c_id">
+        <div class="field-hint">Tự tạo từ tên nếu để trống.</div>
+      </div>
+    </div>
+    <div class="modal-foot">
+      <button class="ghost" onclick="closeCategoryModal()">Huỷ</button>
+      <button class="primary" onclick="saveCategory()">Lưu danh mục</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+let DATASETS = [];
+let current = null;        // key dataset hiện tại
+let dsType = 'flat';       // 'categories' | 'flat'
+let dsMedia = '';          // thư mục media gốc của dataset hiện tại
+let model = null;          // dữ liệu đang chỉnh: {categories:[...]} hoặc [...]
+let dirty = false;
+let editCtx = null;        // {catIndex, itemIndex} hoặc null khi thêm mới
+let catEditIndex = null;
+const collapsed = {};
+
+// ---------- Khởi tạo ----------
+async function init() {
+  DATASETS = await (await fetch('/api/datasets')).json();
+  const tabs = document.getElementById('tabs');
+  tabs.innerHTML = DATASETS.map(d =>
+    `<div class="tab" data-key="${d.key}" onclick="switchDataset('${d.key}')">${d.label}</div>`).join('');
+  switchDataset(DATASETS[0].key);
+  window.addEventListener('beforeunload', (e) => { if (dirty) { e.preventDefault(); e.returnValue = ''; } });
+}
+
+async function switchDataset(key) {
+  if (dirty && !confirm('Bạn có thay đổi chưa lưu. Chuyển tab và bỏ thay đổi?')) return;
+  current = key;
+  document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.key === key));
+  dsMedia = (DATASETS.find(d => d.key === key) || {}).media || '';
+  const res = await (await fetch('/api/data/' + key)).json();
+  if (res.error) return toast(res.error, 'err');
+  dsType = res.type;
+  model = res.data;
+  dirty = false;
+  document.getElementById('addCatBtn').style.display = dsType === 'categories' ? '' : 'none';
+  document.getElementById('addItemBtn').style.display = dsType === 'categories' ? 'none' : '';
+  updateStatus();
+  render();
+}
+
+function setDirty() { dirty = true; updateStatus(); }
+function updateStatus() {
+  const s = document.getElementById('status');
+  document.getElementById('saveBtn').disabled = !dirty;
+  s.className = 'status' + (dirty ? ' dirty' : '');
+  s.textContent = dirty ? '● Chưa lưu' : '';
+}
+
+// ---------- Render ----------
+function getAllItems() {
+  if (dsType === 'flat') return model;
+  return model.categories.flatMap(c => c.items);
+}
+
+function matches(item, q) {
+  if (!q) return true;
+  q = q.toLowerCase();
+  return (item.name || '').toLowerCase().includes(q) || (item.id || '').toLowerCase().includes(q);
+}
+
+function looksWrong(item) {
+  // cảnh báo url có vẻ thiếu đuôi file
+  const u = item.url || '';
+  return !/\.(mp4|webm|mov|mp3|wav|m4a|png|jpg|jpeg|gif|webp|svg)$/i.test(u);
+}
+
+function render() {
+  const q = document.getElementById('search').value.trim();
+  const content = document.getElementById('content');
+  const total = getAllItems().length;
+  document.getElementById('count').textContent = total + ' mục';
+
+  if (dsType === 'flat') {
+    content.innerHTML = `<div class="category"><div class="items" id="flatItems"></div></div>`;
+    renderItems(document.getElementById('flatItems'), model, q, null);
+    return;
+  }
+
+  content.innerHTML = model.categories.map((cat, ci) => {
+    const isCol = collapsed[cat.id];
+    const visItems = cat.items.filter(it => matches(it, q));
+    if (q && visItems.length === 0) return '';
+    return `
+      <div class="category">
+        <div class="cat-head ${isCol ? 'collapsed' : ''}" onclick="toggleCat('${cat.id}')">
+          <span class="chev">▼</span>
+          <span class="cat-title">${esc(cat.name)}</span>
+          <span class="cat-id">${esc(cat.id)}</span>
+          <span class="cat-badge">${cat.items.length}</span>
+          <div class="cat-actions" onclick="event.stopPropagation()">
+            <button class="ghost" onclick="openItemModal(${ci})">+ mục</button>
+            <button class="ghost" onclick="openCategoryModal(${ci})">✎</button>
+            <button class="ghost" ${ci===0?'disabled':''} onclick="moveCat(${ci},-1)">▲</button>
+            <button class="ghost" ${ci===model.categories.length-1?'disabled':''} onclick="moveCat(${ci},1)">▼</button>
+            <button class="danger" onclick="deleteCategory(${ci})">🗑</button>
+          </div>
+        </div>
+        ${isCol ? '' : `<div class="items" id="cat-${ci}"></div>`}
+      </div>`;
+  }).join('') || '<div class="empty">Không có danh mục nào.</div>';
+
+  model.categories.forEach((cat, ci) => {
+    if (collapsed[cat.id]) return;
+    const el = document.getElementById('cat-' + ci);
+    if (el) renderItems(el, cat.items, q, ci);
+  });
+}
+
+function renderItems(container, items, q, ci) {
+  const rows = items.map((it, ii) => {
+    if (!matches(it, q)) return '';
+    const warn = looksWrong(it);
+    const thumb = it.thumbnail
+      ? `<img class="thumb" src="${esc(it.thumbnail)}" onerror="this.replaceWith(brokenThumb())">`
+      : `<div class="thumb">—</div>`;
+    return `
+      <div class="item">
+        ${thumb}
+        <div class="item-info">
+          <div class="item-name">${esc(it.name || '(chưa có tên)')}</div>
+          <div class="item-meta ${warn?'warn':''}">${esc(it.id)} · ${esc(it.url || '')}</div>
+        </div>
+        <div class="item-actions">
+          <div class="order-btns">
+            <button class="ghost" ${ii===0?'disabled':''} onclick="moveItem(${ci},${ii},-1)">▲</button>
+            <button class="ghost" ${ii===items.length-1?'disabled':''} onclick="moveItem(${ci},${ii},1)">▼</button>
+          </div>
+          <button class="ghost" onclick="openItemModal(${ci},${ii})">✎ Sửa</button>
+          <button class="danger" onclick="deleteItem(${ci},${ii})">🗑</button>
+        </div>
+      </div>`;
+  }).join('');
+  container.innerHTML = rows || '<div class="empty">Chưa có mục nào.</div>';
+}
+
+function brokenThumb() {
+  const d = document.createElement('div');
+  d.className = 'thumb'; d.textContent = '⚠';
+  d.title = 'Không tải được thumbnail';
+  return d;
+}
+
+function toggleCat(id) { collapsed[id] = !collapsed[id]; render(); }
+
+// ---------- Di chuyển ----------
+function moveCat(ci, dir) {
+  const arr = model.categories; const j = ci + dir;
+  if (j < 0 || j >= arr.length) return;
+  [arr[ci], arr[j]] = [arr[j], arr[ci]];
+  setDirty(); render();
+}
+function getList(ci) { return ci === null ? model : model.categories[ci].items; }
+function moveItem(ci, ii, dir) {
+  const arr = getList(ci); const j = ii + dir;
+  if (j < 0 || j >= arr.length) return;
+  [arr[ii], arr[j]] = [arr[j], arr[ii]];
+  setDirty(); render();
+}
+
+// ---------- Item modal ----------
+function openItemModal(ci, ii) {
+  editCtx = { ci: ci === undefined ? null : ci, ii: ii === undefined ? null : ii };
+  const isEdit = editCtx.ii !== null;
+  document.getElementById('itemModalTitle').textContent = isEdit ? 'Sửa mục' : 'Thêm mục mới';
+  const it = isEdit ? getList(editCtx.ci)[editCtx.ii] : { name: '', id: '', url: '', thumbnail: null };
+  f_name.value = it.name || '';
+  f_id.value = it.id || '';
+  f_url.value = it.url || '';
+  f_thumb.value = it.thumbnail || '';
+  f_id.dataset.auto = isEdit ? '0' : '1';
+  onUrlInput(); onThumbInput();
+  document.getElementById('itemOverlay').classList.add('show');
+  f_name.focus();
+}
+function closeItemModal() { document.getElementById('itemOverlay').classList.remove('show'); }
+
+function slugify(s) {
+  return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/đ/g, 'd').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+}
+function onNameInput() {
+  if (f_id.dataset.auto === '1') {
+    const prefix = (editCtx && editCtx.ci !== null && dsType === 'categories')
+      ? model.categories[editCtx.ci].id + '-' : (dsType === 'flat' ? current.replace(/s$/, '') + '-' : '');
+    f_id.value = prefix + slugify(f_name.value);
+  }
+}
+function onCatNameInput() { if (c_id.dataset.auto === '1') c_id.value = slugify(c_name.value); }
+
+function previewInto(boxId, srcVal) {
+  const box = document.getElementById(boxId);
+  const v = (srcVal || '').trim();
+  if (!v) { box.classList.remove('show'); box.innerHTML = ''; return; }
+  let html = '';
+  if (/\.(mp4|webm|mov)$/i.test(v)) html = `<video src="${esc(v)}" controls preload="metadata"></video>`;
+  else if (/\.(mp3|wav|m4a)$/i.test(v)) html = `<audio src="${esc(v)}" controls></audio>`;
+  else if (/\.(png|jpg|jpeg|gif|webp|svg)$/i.test(v)) html = `<img src="${esc(v)}" onerror="this.parentNode.innerHTML='<div style=padding:14px;color:#8b91a3>⚠ Không tải được</div>'">`;
+  else { box.classList.remove('show'); box.innerHTML = ''; return; }
+  box.innerHTML = html; box.classList.add('show');
+}
+function onUrlInput() {
+  previewInto('urlPreview', f_url.value);
+  document.getElementById('urlHint').textContent =
+    looksWrong({ url: f_url.value }) && f_url.value ? '⚠ URL có vẻ thiếu đuôi file (.mp4/.jpg...)' : '';
+}
+function onThumbInput() { previewInto('thumbPreview', f_thumb.value); }
+
+async function uploadFile(input, targetField) {
+  const file = input.files && input.files[0];
+  input.value = ''; // reset để chọn lại cùng file vẫn kích hoạt
+  if (!file) return;
+  // Xác định thư mục đích
+  let dir = dsMedia;
+  if (dsType === 'categories') {
+    if (editCtx.ci === null) return toast('Hãy thêm mục từ trong một danh mục', 'err');
+    dir = dsMedia + '/' + model.categories[editCtx.ci].id;
+  }
+  const btnId = targetField === 'f_url' ? 'pickUrlBtn' : 'pickThumbBtn';
+  const btn = document.getElementById(btnId);
+  btn.classList.add('busy'); btn.textContent = '⏳ Đang tải...';
+  try {
+    const q = '?dir=' + encodeURIComponent(dir) + '&name=' + encodeURIComponent(file.name);
+    const res = await fetch('/api/upload' + q, { method: 'POST', body: file });
+    const j = await res.json();
+    if (j.ok) {
+      document.getElementById(targetField).value = j.path;
+      if (targetField === 'f_url') {
+        onUrlInput();
+        // gợi ý id từ tên file nếu id đang để trống
+        if (!f_id.value.trim() && f_id.dataset.auto === '1' && f_name.value.trim()) onNameInput();
+      } else onThumbInput();
+      toast('✅ Đã tải lên: ' + j.path, 'ok');
+    } else toast(j.error || 'Tải lên thất bại', 'err');
+  } catch (e) { toast('Lỗi tải lên: ' + e.message, 'err'); }
+  btn.classList.remove('busy'); btn.textContent = '📁 Tải lên';
+}
+
+function saveItem() {
+  const name = f_name.value.trim();
+  const id = f_id.value.trim();
+  const url = f_url.value.trim();
+  const thumb = f_thumb.value.trim();
+  if (!name) return toast('Cần nhập tên', 'err');
+  if (!id) return toast('Cần có ID', 'err');
+  if (!url) return toast('Cần nhập URL', 'err');
+  // kiểm tra trùng id
+  const dup = getAllItems().some((it, idx) => {
+    if (editCtx.ii !== null) {
+      const target = getList(editCtx.ci)[editCtx.ii];
+      if (it === target) return false;
+    }
+    return it.id === id;
+  });
+  if (dup) return toast('ID "' + id + '" đã tồn tại', 'err');
+
+  const obj = { id, name, url, thumbnail: thumb || null };
+  if (editCtx.ii !== null) {
+    getList(editCtx.ci)[editCtx.ii] = obj;
+  } else {
+    getList(editCtx.ci).push(obj);
+  }
+  setDirty(); render(); closeItemModal();
+  toast('Đã thêm/sửa mục (nhớ bấm Lưu)', 'ok');
+}
+
+function deleteItem(ci, ii) {
+  const it = getList(ci)[ii];
+  if (!confirm('Xoá "' + (it.name || it.id) + '"?')) return;
+  getList(ci).splice(ii, 1);
+  setDirty(); render();
+}
+
+// ---------- Category modal ----------
+function openCategoryModal(ci) {
+  catEditIndex = ci === undefined ? null : ci;
+  const isEdit = catEditIndex !== null;
+  document.getElementById('catModalTitle').textContent = isEdit ? 'Sửa danh mục' : 'Thêm danh mục';
+  const cat = isEdit ? model.categories[catEditIndex] : { name: '', id: '' };
+  c_name.value = cat.name || '';
+  c_id.value = cat.id || '';
+  c_id.dataset.auto = isEdit ? '0' : '1';
+  document.getElementById('catOverlay').classList.add('show');
+  c_name.focus();
+}
+function closeCategoryModal() { document.getElementById('catOverlay').classList.remove('show'); }
+function saveCategory() {
+  const name = c_name.value.trim(); const id = c_id.value.trim();
+  if (!name) return toast('Cần nhập tên danh mục', 'err');
+  if (!id) return toast('Cần có ID', 'err');
+  const dup = model.categories.some((c, idx) => idx !== catEditIndex && c.id === id);
+  if (dup) return toast('ID danh mục đã tồn tại', 'err');
+  if (catEditIndex !== null) {
+    model.categories[catEditIndex].name = name;
+    model.categories[catEditIndex].id = id;
+  } else {
+    model.categories.push({ id, name, items: [] });
+  }
+  setDirty(); render(); closeCategoryModal();
+}
+function deleteCategory(ci) {
+  const cat = model.categories[ci];
+  if (!confirm(`Xoá danh mục "${cat.name}" cùng ${cat.items.length} mục bên trong?`)) return;
+  model.categories.splice(ci, 1);
+  setDirty(); render();
+}
+
+// ---------- Lưu ----------
+async function saveData() {
+  document.getElementById('saveBtn').disabled = true;
+  try {
+    const res = await fetch('/api/data/' + current, {
+      method: 'PUT', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ data: model }),
+    });
+    const j = await res.json();
+    if (j.ok) { dirty = false; updateStatus(); toast('✅ Đã lưu vào file', 'ok'); }
+    else toast(j.error || 'Lưu thất bại', 'err');
+  } catch (e) { toast('Lỗi: ' + e.message, 'err'); }
+  updateStatus();
+}
+
+// ---------- Tiện ích ----------
+function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, c =>
+  ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+let toastTimer;
+function toast(msg, kind) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.className = 'toast show ' + (kind || '');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2600);
+}
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') { closeItemModal(); closeCategoryModal(); }
+  if ((e.metaKey || e.ctrlKey) && e.key === 's') { e.preventDefault(); if (dirty) saveData(); }
+});
+init();
+</script>
+</body>
+</html>
