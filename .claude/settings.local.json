@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -c server.js)",
+      "Bash(node server.js)",
+      "Bash(curl -s http://localhost:4321/api/datasets)",
+      "Bash(curl -s http://localhost:4321/api/data/ringtones)",
+      "Bash(kill %1)",
+      "Bash(lsof -ti:4321)",
+      "Bash(xargs kill)",
+      "Bash(curl -s -o /dev/null -w \"HTTP %{http_code}\\\\n\" http://localhost:4321)",
+      "Bash(curl -s -o /dev/null -w \"API %{http_code}\\\\n\" http://localhost:4321/api/datasets)",
+      "Bash(printf '\\\\x89PNG\\\\r\\\\n\\\\x1a\\\\n test image bytes')",
+      "Bash(curl -s -X POST 'http://localhost:4321/api/upload?dir=fake-call/sweet-girl&name=__test-upload.png' --data-binary @/tmp/test-upload.png)",
+      "Bash(curl -s -X POST \"http://localhost:4321/api/upload?dir=../evil&name=x.png\" --data-binary @/tmp/test-upload.png)",
+      "Bash(rm -f fake-call/sweet-girl/__test-upload.png /tmp/test-upload.png)",
+      "Bash(node -c api/_lib.js)",
+      "Bash(node -c api/datasets.js)",
+      "Bash(node -c \"api/data/[key].js\")",
+      "Bash(node -c api/upload.js)",
+      "Bash(curl -s -o /dev/null -w \"Local server: HTTP %{http_code}\\\\n\" http://localhost:4321)",
+      "Bash(xargs kill -9)",
+      "Bash(git checkout *)",
+      "Bash(curl -s -o /dev/null -w \"Server: HTTP %{http_code}\\\\n\" http://localhost:4321)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(ngrok --version)",
+      "Bash(curl -s -o /dev/null -w \"local 4321: %{http_code}\\\\n\" http://localhost:4321)"
+    ]
+  }
+}
