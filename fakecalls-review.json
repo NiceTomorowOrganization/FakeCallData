@@ -17,24 +17,6 @@
           "thumbnail": "fake-call/celebrity/celebrity-15-thumb.jpg"
         },
         {
-          "id": "celebrity-16",
-          "name": "Spiderman",
-          "url": "fake-call/celebrity/celebrity-16.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-16-thumb.jpg"
-        },
-        {
-          "id": "celebrity-17",
-          "name": "Skibidi Toilet",
-          "url": "fake-call/celebrity/celebrity-17.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-17-thumb.jpg"
-        },
-        {
-          "id": "celebrity-18",
-          "name": "Sally",
-          "url": "fake-call/celebrity/celebrity-18.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-18-thumb.jpg"
-        },
-        {
           "id": "celebrity-19",
           "name": "Saint Nick",
           "url": "fake-call/celebrity/celebrity-19.mp4",
@@ -71,22 +53,10 @@
           "thumbnail": "fake-call/celebrity/celebrity-24-thumb.jpg"
         },
         {
-          "id": "celebrity-26",
-          "name": "Maleficent",
-          "url": "fake-call/celebrity/celebrity-26.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-26-thumb.jpg"
-        },
-        {
           "id": "celebrity-28",
           "name": "Jack Skellington",
           "url": "fake-call/celebrity/celebrity-28.mp4",
           "thumbnail": "fake-call/celebrity/celebrity-28-thumb.jpg"
-        },
-        {
-          "id": "celebrity-29",
-          "name": "Ironman",
-          "url": "fake-call/celebrity/celebrity-29.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-29-thumb.jpg"
         },
         {
           "id": "celebrity-30",
@@ -123,12 +93,6 @@
           "name": "Creepy",
           "url": "fake-call/celebrity/celebrity-35.mp4",
           "thumbnail": "fake-call/celebrity/celebrity-35-thumb.jpg"
-        },
-        {
-          "id": "celebrity-36",
-          "name": "Chucky",
-          "url": "fake-call/celebrity/celebrity-36.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-36-thumb.jpg"
         },
         {
           "id": "celebrity-41",
@@ -483,42 +447,6 @@
           "name": "Boy 8",
           "url": "fake-call/handsome-man/handsome-man-05.mp4",
           "thumbnail": "fake-call/handsome-man/handsome-man-05-thumb.png"
-        }
-      ]
-    },
-    {
-      "id": "superhero",
-      "name": "Superhero",
-      "items": [
-        {
-          "id": "superhero-01",
-          "name": "Parvati",
-          "url": "fake-call/superhero/superhero-01.mp4",
-          "thumbnail": "fake-call/superhero/superhero-01-thumb.png"
-        },
-        {
-          "id": "superhero-02",
-          "name": "Spider girl",
-          "url": "fake-call/superhero/superhero-02.mp4",
-          "thumbnail": "fake-call/superhero/superhero-02-thumb.png"
-        },
-        {
-          "id": "superhero-03",
-          "name": "Spider man",
-          "url": "fake-call/superhero/superhero-03.mp4",
-          "thumbnail": "fake-call/superhero/superhero-03-thumb.png"
-        },
-        {
-          "id": "superhero-04",
-          "name": "Superman",
-          "url": "fake-call/superhero/superhero-04.mp4",
-          "thumbnail": "fake-call/superhero/superhero-04-thumb.png"
-        },
-        {
-          "id": "superhero-05",
-          "name": "Vishnu",
-          "url": "fake-call/superhero/superhero-05.mp4",
-          "thumbnail": "fake-call/superhero/superhero-05-thumb.png"
         }
       ]
     },
