@@ -23,6 +23,15 @@
   .tab.active { background: var(--accent2); color: #fff; border-color: var(--accent2); }
   .spacer { flex: 1; }
   .status { font-size: 12px; color: var(--muted); min-width: 80px; text-align: right; }
+  /* Switch Production / Review */
+  .env-switch { display: flex; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .env-switch button { border: none; border-radius: 0; padding: 7px 14px; color: var(--muted); background: var(--panel2); font-weight: 600; }
+  .env-switch button.active { color: #fff; }
+  .env-switch button.active.prod { background: var(--accent2); }
+  .env-switch button.active.review { background: var(--warn); color: #1a1a1a; }
+  body.review-mode header { border-bottom: 2px solid var(--warn); }
+  .env-note { font-size: 12px; color: var(--warn); display: none; }
+  body.review-mode .env-note { display: inline; }
   .status.dirty { color: var(--warn); }
   .status.saved { color: var(--ok); }
   button { font-family: inherit; font-size: 13px; cursor: pointer; border-radius: 8px;
@@ -111,6 +120,11 @@
   <h1>🗂️ Quản lý dữ liệu</h1>
   <div class="tabs" id="tabs"></div>
   <div class="spacer"></div>
+  <div class="env-switch" title="Chọn nơi đọc/ghi dữ liệu">
+    <button id="envProd" class="prod active" onclick="switchVariant('production')">Production</button>
+    <button id="envReview" class="review" onclick="switchVariant('review')">Review</button>
+  </div>
+  <span class="env-note">⚠ Đang sửa bản REVIEW</span>
   <span class="status" id="status"></span>
   <button class="primary" id="saveBtn" onclick="saveData()" disabled>💾 Lưu</button>
 </header>
@@ -195,6 +209,7 @@ let DATASETS = [];
 let current = null;        // key dataset hiện tại
 let dsType = 'flat';       // 'categories' | 'flat'
 let dsMedia = '';          // thư mục media gốc của dataset hiện tại
+let variant = 'production'; // 'production' | 'review' — nơi đọc/ghi dữ liệu
 
 // server.js phục vụ luôn file media (kể cả khi đi qua ngrok) nên dùng đường dẫn tương đối.
 function mediaURL(u) { return u; }
@@ -239,7 +254,7 @@ async function switchDataset(key) {
   current = key;
   document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.dataset.key === key));
   dsMedia = (DATASETS.find(d => d.key === key) || {}).media || '';
-  const res = await (await apiFetch('/api/data/' + key)).json();
+  const res = await (await apiFetch('/api/data/' + key + '?variant=' + variant)).json();
   if (res.error) return toast(res.error, 'err');
   dsType = res.type;
   model = res.data;
@@ -248,6 +263,17 @@ async function switchDataset(key) {
   document.getElementById('addItemBtn').style.display = dsType === 'categories' ? 'none' : '';
   updateStatus();
   render();
+}
+
+async function switchVariant(v) {
+  if (v === variant) return;
+  if (dirty && !confirm('Bạn có thay đổi chưa lưu. Chuyển chế độ và bỏ thay đổi?')) return;
+  variant = v;
+  document.getElementById('envProd').classList.toggle('active', v === 'production');
+  document.getElementById('envReview').classList.toggle('active', v === 'review');
+  document.body.classList.toggle('review-mode', v === 'review');
+  dirty = false; // tránh confirm lặp lại trong switchDataset
+  await switchDataset(current);
 }
 
 function setDirty() { dirty = true; updateStatus(); }
@@ -533,7 +559,7 @@ function deleteCategory(ci) {
 async function saveData() {
   document.getElementById('saveBtn').disabled = true;
   try {
-    const res = await apiFetch('/api/data/' + current, {
+    const res = await apiFetch('/api/data/' + current + '?variant=' + variant, {
       method: 'PUT', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ data: model }),
     });
