@@ -5,84 +5,6 @@
       "name": "Famous person",
       "items": [
         {
-          "id": "celebrity-01",
-          "name": "Mr Beast",
-          "url": "fake-call/celebrity/celebrity-01.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-01-thumb.jpg"
-        },
-        {
-          "id": "celebrity-02",
-          "name": "Elon Musk",
-          "url": "fake-call/celebrity/celebrity-02.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-02-thumb.jpg"
-        },
-        {
-          "id": "celebrity-03",
-          "name": "Mark Zuckerberg",
-          "url": "fake-call/celebrity/celebrity-03.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-03-thumb.jpg"
-        },
-        {
-          "id": "celebrity-04",
-          "name": "Adele",
-          "url": "fake-call/celebrity/celebrity-04.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-04-thumb.png"
-        },
-        {
-          "id": "celebrity-05",
-          "name": "Bad bunny",
-          "url": "fake-call/celebrity/celebrity-05.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-05-thumb.png"
-        },
-        {
-          "id": "celebrity-06",
-          "name": "Billie Elish",
-          "url": "fake-call/celebrity/celebrity-06.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-06-thumb.png"
-        },
-        {
-          "id": "celebrity-07",
-          "name": "V Taehuyng",
-          "url": "fake-call/celebrity/celebrity-07.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-07-thumb.png"
-        },
-        {
-          "id": "celebrity-08",
-          "name": "Dua Lipa",
-          "url": "fake-call/celebrity/celebrity-08.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-08-thumb.png"
-        },
-        {
-          "id": "celebrity-09",
-          "name": "Ed Sheeran",
-          "url": "fake-call/celebrity/celebrity-09.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-09-thumb.png"
-        },
-        {
-          "id": "celebrity-10",
-          "name": "Emma Watson",
-          "url": "fake-call/celebrity/celebrity-10.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-10-thumb.png"
-        },
-        {
-          "id": "celebrity-11",
-          "name": "Gal Gadot",
-          "url": "fake-call/celebrity/celebrity-11.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-11-thumb.png"
-        },
-        {
-          "id": "celebrity-12",
-          "name": "Shehnaaz Kaur Gill",
-          "url": "fake-call/celebrity/celebrity-12.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-12-thumb.png"
-        },
-        {
-          "id": "celebrity-13",
-          "name": "Selena Gomez",
-          "url": "fake-call/celebrity/celebrity-13.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-13-thumb.png"
-        },
-        {
           "id": "celebrity-14",
           "name": "Zombie",
           "url": "fake-call/celebrity/celebrity-14.mp4",
@@ -93,24 +15,6 @@
           "name": "Vecna",
           "url": "fake-call/celebrity/celebrity-15.mp4",
           "thumbnail": "fake-call/celebrity/celebrity-15-thumb.jpg"
-        },
-        {
-          "id": "celebrity-16",
-          "name": "Spiderman",
-          "url": "fake-call/celebrity/celebrity-16.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-16-thumb.jpg"
-        },
-        {
-          "id": "celebrity-17",
-          "name": "Skibidi Toilet",
-          "url": "fake-call/celebrity/celebrity-17.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-17-thumb.jpg"
-        },
-        {
-          "id": "celebrity-18",
-          "name": "Sally",
-          "url": "fake-call/celebrity/celebrity-18.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-18-thumb.jpg"
         },
         {
           "id": "celebrity-19",
@@ -149,34 +53,10 @@
           "thumbnail": "fake-call/celebrity/celebrity-24-thumb.jpg"
         },
         {
-          "id": "celebrity-25",
-          "name": "Beyonce",
-          "url": "fake-call/celebrity/celebrity-25.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-25-thumb.jpg"
-        },
-        {
-          "id": "celebrity-26",
-          "name": "Maleficent",
-          "url": "fake-call/celebrity/celebrity-26.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-26-thumb.jpg"
-        },
-        {
-          "id": "celebrity-27",
-          "name": "L.Messi",
-          "url": "fake-call/celebrity/celebrity-27.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-27-thumb.jpg"
-        },
-        {
           "id": "celebrity-28",
           "name": "Jack Skellington",
           "url": "fake-call/celebrity/celebrity-28.mp4",
           "thumbnail": "fake-call/celebrity/celebrity-28-thumb.jpg"
-        },
-        {
-          "id": "celebrity-29",
-          "name": "Ironman",
-          "url": "fake-call/celebrity/celebrity-29.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-29-thumb.jpg"
         },
         {
           "id": "celebrity-30",
@@ -215,82 +95,10 @@
           "thumbnail": "fake-call/celebrity/celebrity-35-thumb.jpg"
         },
         {
-          "id": "celebrity-36",
-          "name": "Chucky",
-          "url": "fake-call/celebrity/celebrity-36.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-36-thumb.jpg"
-        },
-        {
-          "id": "celebrity-37",
-          "name": "Jisoo",
-          "url": "fake-call/celebrity/celebrity-37.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-37-thumb.jpg"
-        },
-        {
-          "id": "celebrity-38",
-          "name": "Wednesday",
-          "url": "fake-call/celebrity/celebrity-38.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-38-thumb.jpg"
-        },
-        {
-          "id": "celebrity-39",
-          "name": "V",
-          "url": "fake-call/celebrity/celebrity-39.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-39-thumb.jpg"
-        },
-        {
-          "id": "celebrity-40",
-          "name": "Taylor Swift",
-          "url": "fake-call/celebrity/celebrity-40.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-40-thumb.jpg"
-        },
-        {
           "id": "celebrity-41",
           "name": "Superman",
           "url": "fake-call/celebrity/celebrity-41.mp4",
           "thumbnail": "fake-call/celebrity/celebrity-41-thumb.jpg"
-        },
-        {
-          "id": "celebrity-42",
-          "name": "Sơn Tùng MTP",
-          "url": "fake-call/celebrity/celebrity-42.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-42-thumb.jpg"
-        },
-        {
-          "id": "celebrity-43",
-          "name": "Rosé",
-          "url": "fake-call/celebrity/celebrity-43.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-43-thumb.jpg"
-        },
-        {
-          "id": "celebrity-44",
-          "name": "RM",
-          "url": "fake-call/celebrity/celebrity-44.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-44-thumb.jpg"
-        },
-        {
-          "id": "celebrity-45",
-          "name": "Lisa",
-          "url": "fake-call/celebrity/celebrity-45.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-45-thumb.jpg"
-        },
-        {
-          "id": "celebrity-46",
-          "name": "Lee Do Huyn",
-          "url": "fake-call/celebrity/celebrity-46.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-46-thumb.jpg"
-        },
-        {
-          "id": "celebrity-47",
-          "name": "Lady Gaga",
-          "url": "fake-call/celebrity/celebrity-47.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-47-thumb.jpg"
-        },
-        {
-          "id": "celebrity-48",
-          "name": "John Wick",
-          "url": "fake-call/celebrity/celebrity-48.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-48-thumb.jpg"
         },
         {
           "id": "celebrity-49",
@@ -299,52 +107,16 @@
           "thumbnail": "fake-call/celebrity/celebrity-49-thumb.jpg"
         },
         {
-          "id": "celebrity-50",
-          "name": "Jin",
-          "url": "fake-call/celebrity/celebrity-50.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-50-thumb.jpg"
-        },
-        {
-          "id": "celebrity-51",
-          "name": "Jimin",
-          "url": "fake-call/celebrity/celebrity-51.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-51-thumb.jpg"
-        },
-        {
-          "id": "celebrity-52",
-          "name": "Jennie",
-          "url": "fake-call/celebrity/celebrity-52.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-52-thumb.jpg"
-        },
-        {
           "id": "celebrity-53",
           "name": "Jack Frost",
           "url": "fake-call/celebrity/celebrity-53.mp4",
           "thumbnail": "fake-call/celebrity/celebrity-53-thumb.jpg"
         },
         {
-          "id": "celebrity-54",
-          "name": "J Hope",
-          "url": "fake-call/celebrity/celebrity-54.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-54-thumb.jpg"
-        },
-        {
           "id": "celebrity-55",
           "name": "Elsa",
           "url": "fake-call/celebrity/celebrity-55.mp4",
           "thumbnail": "fake-call/celebrity/celebrity-55-thumb.jpg"
-        },
-        {
-          "id": "celebrity-56",
-          "name": "Cardi B",
-          "url": "fake-call/celebrity/celebrity-56.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-56-thumb.jpg"
-        },
-        {
-          "id": "celebrity-57",
-          "name": "Camila Cabello",
-          "url": "fake-call/celebrity/celebrity-57.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-57-thumb.jpg"
         },
         {
           "id": "celebrity-58",
@@ -383,250 +155,10 @@
           "thumbnail": "fake-call/celebrity/celebrity-63-thumb.jpg"
         },
         {
-          "id": "celebrity-64",
-          "name": "Ariana Grande",
-          "url": "fake-call/celebrity/celebrity-64.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-64-thumb.jpg"
-        },
-        {
-          "id": "celebrity-65",
-          "name": "Baekhyun",
-          "url": "fake-call/celebrity/celebrity-65.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-65-thumb.jpg"
-        },
-        {
-          "id": "celebrity-66",
-          "name": "Bang Chan",
-          "url": "fake-call/celebrity/celebrity-66.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-66-thumb.jpg"
-        },
-        {
-          "id": "celebrity-67",
-          "name": "Billie Eilish",
-          "url": "fake-call/celebrity/celebrity-67.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-67-thumb.jpg"
-        },
-        {
-          "id": "celebrity-68",
-          "name": "Cha Eun Woo",
-          "url": "fake-call/celebrity/celebrity-68.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-68-thumb.jpg"
-        },
-        {
-          "id": "celebrity-69",
-          "name": "Chaeyoung",
-          "url": "fake-call/celebrity/celebrity-69.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-69-thumb.jpg"
-        },
-        {
           "id": "celebrity-70",
           "name": "Alien",
           "url": "fake-call/celebrity/celebrity-70.mp4",
           "thumbnail": "fake-call/celebrity/celebrity-70-thumb.jpg"
-        },
-        {
-          "id": "celebrity-71",
-          "name": "Changbin",
-          "url": "fake-call/celebrity/celebrity-71.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-71-thumb.jpg"
-        },
-        {
-          "id": "celebrity-72",
-          "name": "Chanyeol",
-          "url": "fake-call/celebrity/celebrity-72.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-72-thumb.jpg"
-        },
-        {
-          "id": "celebrity-73",
-          "name": "Charli D' Amelio",
-          "url": "fake-call/celebrity/celebrity-73.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-73-thumb.jpg"
-        },
-        {
-          "id": "celebrity-74",
-          "name": "Chen",
-          "url": "fake-call/celebrity/celebrity-74.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-74-thumb.jpg"
-        },
-        {
-          "id": "celebrity-75",
-          "name": "Dahyun",
-          "url": "fake-call/celebrity/celebrity-75.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-75-thumb.jpg"
-        },
-        {
-          "id": "celebrity-76",
-          "name": "Doyoung",
-          "url": "fake-call/celebrity/celebrity-76.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-76-thumb.jpg"
-        },
-        {
-          "id": "celebrity-77",
-          "name": "Felix",
-          "url": "fake-call/celebrity/celebrity-77.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-77-thumb.jpg"
-        },
-        {
-          "id": "celebrity-78",
-          "name": "Giselle",
-          "url": "fake-call/celebrity/celebrity-78.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-78-thumb.jpg"
-        },
-        {
-          "id": "celebrity-79",
-          "name": "Haechan",
-          "url": "fake-call/celebrity/celebrity-79.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-79-thumb.jpg"
-        },
-        {
-          "id": "celebrity-80",
-          "name": "Han",
-          "url": "fake-call/celebrity/celebrity-80.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-80-thumb.jpg"
-        },
-        {
-          "id": "celebrity-81",
-          "name": "Hyunjin",
-          "url": "fake-call/celebrity/celebrity-81.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-81-thumb.jpg"
-        },
-        {
-          "id": "celebrity-82",
-          "name": "I.N",
-          "url": "fake-call/celebrity/celebrity-82.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-82-thumb.jpg"
-        },
-        {
-          "id": "celebrity-83",
-          "name": "IU",
-          "url": "fake-call/celebrity/celebrity-83.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-83-thumb.jpg"
-        },
-        {
-          "id": "celebrity-84",
-          "name": "Jaehyun",
-          "url": "fake-call/celebrity/celebrity-84.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-84-thumb.jpg"
-        },
-        {
-          "id": "celebrity-85",
-          "name": "Jungkook",
-          "url": "fake-call/celebrity/celebrity-85.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-85-thumb.jpg"
-        },
-        {
-          "id": "celebrity-86",
-          "name": "Kim Jennie",
-          "url": "fake-call/celebrity/celebrity-86.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-86-thumb.jpg"
-        },
-        {
-          "id": "celebrity-87",
-          "name": "Kim Jisoo",
-          "url": "fake-call/celebrity/celebrity-87.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-87-thumb.jpg"
-        },
-        {
-          "id": "celebrity-88",
-          "name": "Kim Namjoon",
-          "url": "fake-call/celebrity/celebrity-88.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-88-thumb.jpg"
-        },
-        {
-          "id": "celebrity-89",
-          "name": "Kim Seokjin",
-          "url": "fake-call/celebrity/celebrity-89.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-89-thumb.jpg"
-        },
-        {
-          "id": "celebrity-90",
-          "name": "Kim Taehyung",
-          "url": "fake-call/celebrity/celebrity-90.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-90-thumb.jpg"
-        },
-        {
-          "id": "celebrity-91",
-          "name": "Lalisa Manoban",
-          "url": "fake-call/celebrity/celebrity-91.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-91-thumb.jpg"
-        },
-        {
-          "id": "celebrity-92",
-          "name": "Lee Min Ho",
-          "url": "fake-call/celebrity/celebrity-92.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-92-thumb.jpg"
-        },
-        {
-          "id": "celebrity-93",
-          "name": "Madison Beer",
-          "url": "fake-call/celebrity/celebrity-93.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-93-thumb.jpg"
-        },
-        {
-          "id": "celebrity-94",
-          "name": "Neymar",
-          "url": "fake-call/celebrity/celebrity-94.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-94-thumb.jpg"
-        },
-        {
-          "id": "celebrity-95",
-          "name": "Olivia Rodrigo",
-          "url": "fake-call/celebrity/celebrity-95.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-95-thumb.jpg"
-        },
-        {
-          "id": "celebrity-96",
-          "name": "Park Jimin",
-          "url": "fake-call/celebrity/celebrity-96.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-96-thumb.jpg"
-        },
-        {
-          "id": "celebrity-97",
-          "name": "Priyanka Chopra",
-          "url": "fake-call/celebrity/celebrity-97.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-97-thumb.jpg"
-        },
-        {
-          "id": "celebrity-98",
-          "name": "Robert Downey",
-          "url": "fake-call/celebrity/celebrity-98.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-98-thumb.jpg"
-        },
-        {
-          "id": "celebrity-99",
-          "name": "Ronaldo",
-          "url": "fake-call/celebrity/celebrity-99.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-99-thumb.jpg"
-        },
-        {
-          "id": "celebrity-100",
-          "name": "Santa Claus",
-          "url": "fake-call/celebrity/celebrity-100.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-100-thumb.jpg"
-        },
-        {
-          "id": "celebrity-101",
-          "name": "Song Kang",
-          "url": "fake-call/celebrity/celebrity-101.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-101-thumb.jpg"
-        },
-        {
-          "id": "celebrity-102",
-          "name": "Suga",
-          "url": "fake-call/celebrity/celebrity-102.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-102-thumb.jpg"
-        },
-        {
-          "id": "celebrity-103",
-          "name": "The Rock",
-          "url": "fake-call/celebrity/celebrity-103.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-103-thumb.jpg"
-        },
-        {
-          "id": "celebrity-104",
-          "name": "Zendaya",
-          "url": "fake-call/celebrity/celebrity-104.mp4",
-          "thumbnail": "fake-call/celebrity/celebrity-104-thumb.jpg"
         }
       ]
     },
@@ -639,30 +171,6 @@
           "name": "Dabu",
           "url": "fake-call/sweet-girl/sweet-girl-01.mp4",
           "thumbnail": "fake-call/sweet-girl/sweet-girl-01-thumb.jpg"
-        },
-        {
-          "id": "sweet-girl-02",
-          "name": "Hein",
-          "url": "fake-call/sweet-girl/sweet-girl-02.mp4",
-          "thumbnail": "fake-call/sweet-girl/sweet-girl-02-thumb.jpg"
-        },
-        {
-          "id": "sweet-girl-03",
-          "name": "Uma",
-          "url": "fake-call/sweet-girl/sweet-girl-03.mp4",
-          "thumbnail": "fake-call/sweet-girl/sweet-girl-03-thumb.jpg"
-        },
-        {
-          "id": "sweet-girl-04",
-          "name": "Jordyn",
-          "url": "fake-call/sweet-girl/sweet-girl-04.mp4",
-          "thumbnail": "fake-call/sweet-girl/sweet-girl-04-thumb.jpg"
-        },
-        {
-          "id": "sweet-girl-05",
-          "name": "Mia",
-          "url": "fake-call/sweet-girl/sweet-girl-05.mp4",
-          "thumbnail": "fake-call/sweet-girl/sweet-girl-05-thumb.jpg"
         },
         {
           "id": "sweet-girl-06",
@@ -779,126 +287,6 @@
           "thumbnail": "fake-call/sweet-girl/sweet-girl-24-thumb.jpg"
         },
         {
-          "id": "sweet-girl-25",
-          "name": "Girl1",
-          "url": "fake-call/sweet-girl/sweet-girl-25.mp4",
-          "thumbnail": null
-        },
-        {
-          "id": "sweet-girl-26",
-          "name": "girl2",
-          "url": "fake-call/sweet-girl/sweet-girl-26.mp4",
-          "thumbnail": null
-        },
-        {
-          "id": "sweet-girl-27",
-          "name": "girl3",
-          "url": "fake-call/sweet-girl/sweet-girl-27.mp4",
-          "thumbnail": null
-        },
-        {
-          "id": "sweet-girl-28",
-          "name": "girl4",
-          "url": "fake-call/sweet-girl/sweet-girl-28.mp4",
-          "thumbnail": null
-        },
-        {
-          "id": "sweet-girl-29",
-          "name": "girl5",
-          "url": "fake-call/sweet-girl/sweet-girl-29.mp4",
-          "thumbnail": null
-        },
-        {
-          "id": "sweet-girl-30",
-          "name": "girl6",
-          "url": "fake-call/sweet-girl/sweet-girl-30.mp4",
-          "thumbnail": null
-        },
-        {
-          "id": "sweet-girl-31",
-          "name": "girl7",
-          "url": "fake-call/sweet-girl/sweet-girl-31.mp4",
-          "thumbnail": null
-        },
-        {
-          "id": "sweet-girl-32",
-          "name": "girl8",
-          "url": "fake-call/sweet-girl/sweet-girl-32.mp4",
-          "thumbnail": null
-        },
-        {
-          "id": "sweet-girl-33",
-          "name": "girl9",
-          "url": "fake-call/sweet-girl/sweet-girl-33.mp4",
-          "thumbnail": null
-        },
-        {
-          "id": "sweet-girl-34",
-          "name": "girl10",
-          "url": "fake-call/sweet-girl/sweet-girl-34.mp4",
-          "thumbnail": null
-        },
-        {
-          "id": "sweet-girl-35",
-          "name": "girl11",
-          "url": "fake-call/sweet-girl/sweet-girl-35.mp4",
-          "thumbnail": null
-        },
-        {
-          "id": "sweet-girl-36",
-          "name": "girl12",
-          "url": "fake-call/sweet-girl/sweet-girl-36.mp4",
-          "thumbnail": null
-        },
-        {
-          "id": "sweet-girl-37",
-          "name": "girl13",
-          "url": "fake-call/sweet-girl/sweet-girl-37.mp4",
-          "thumbnail": null
-        },
-        {
-          "id": "sweet-girl-38",
-          "name": "girl14",
-          "url": "fake-call/sweet-girl/sweet-girl-38.mp4",
-          "thumbnail": null
-        },
-        {
-          "id": "sweet-girl-39",
-          "name": "girl15",
-          "url": "fake-call/sweet-girl/sweet-girl-39.mp4",
-          "thumbnail": null
-        },
-        {
-          "id": "sweet-girl-40",
-          "name": "girl16",
-          "url": "fake-call/sweet-girl/sweet-girl-40.mp4",
-          "thumbnail": null
-        },
-        {
-          "id": "sweet-girl-41",
-          "name": "girl17",
-          "url": "fake-call/sweet-girl/sweet-girl-41.mp4",
-          "thumbnail": null
-        },
-        {
-          "id": "sweet-girl-42",
-          "name": "girl18",
-          "url": "fake-call/sweet-girl/sweet-girl-42.mp4",
-          "thumbnail": null
-        },
-        {
-          "id": "sweet-girl-43",
-          "name": "girl19",
-          "url": "fake-call/sweet-girl/sweet-girl-43.mp4",
-          "thumbnail": null
-        },
-        {
-          "id": "sweet-girl-44",
-          "name": "girl20",
-          "url": "fake-call/sweet-girl/sweet-girl-44.mp4",
-          "thumbnail": null
-        },
-        {
           "id": "sweet-girl-45",
           "name": "Valen",
           "url": "fake-call/sweet-girl/sweet-girl-45.mp4",
@@ -983,12 +371,6 @@
           "thumbnail": "fake-call/funny/funny-03-thumb.jpg"
         },
         {
-          "id": "funny-04",
-          "name": "Blackpink",
-          "url": "fake-call/funny/funny-04.mp4",
-          "thumbnail": "fake-call/funny/funny-04-thumb.png"
-        },
-        {
           "id": "funny-05",
           "name": "Asian man",
           "url": "fake-call/funny/funny-05.mp4",
@@ -1065,72 +447,6 @@
           "name": "Boy 8",
           "url": "fake-call/handsome-man/handsome-man-05.mp4",
           "thumbnail": "fake-call/handsome-man/handsome-man-05-thumb.png"
-        }
-      ]
-    },
-    {
-      "id": "superhero",
-      "name": "Superhero",
-      "items": [
-        {
-          "id": "superhero-01",
-          "name": "Parvati",
-          "url": "fake-call/superhero/superhero-01.mp4",
-          "thumbnail": "fake-call/superhero/superhero-01-thumb.png"
-        },
-        {
-          "id": "superhero-02",
-          "name": "Spider girl",
-          "url": "fake-call/superhero/superhero-02.mp4",
-          "thumbnail": "fake-call/superhero/superhero-02-thumb.png"
-        },
-        {
-          "id": "superhero-03",
-          "name": "Spider man",
-          "url": "fake-call/superhero/superhero-03.mp4",
-          "thumbnail": "fake-call/superhero/superhero-03-thumb.png"
-        },
-        {
-          "id": "superhero-04",
-          "name": "Superman",
-          "url": "fake-call/superhero/superhero-04.mp4",
-          "thumbnail": "fake-call/superhero/superhero-04-thumb.png"
-        },
-        {
-          "id": "superhero-05",
-          "name": "Vishnu",
-          "url": "fake-call/superhero/superhero-05.mp4",
-          "thumbnail": "fake-call/superhero/superhero-05-thumb.png"
-        }
-      ]
-    },
-    {
-      "id": "k-pop",
-      "name": "K-Pop",
-      "items": [
-        {
-          "id": "k-pop-01",
-          "name": "Jennie",
-          "url": "fake-call/k-pop/k-pop-01.mp4",
-          "thumbnail": "fake-call/k-pop/k-pop-01-thumb.jpeg"
-        },
-        {
-          "id": "k-pop-02",
-          "name": "Lisa",
-          "url": "fake-call/k-pop/k-pop-02.mp4",
-          "thumbnail": "fake-call/k-pop/k-pop-02-thumb.jpg"
-        },
-        {
-          "id": "k-pop-03",
-          "name": "Rose",
-          "url": "fake-call/k-pop/k-pop-03.mp4",
-          "thumbnail": "fake-call/k-pop/k-pop-03-thumb.jpg"
-        },
-        {
-          "id": "k-pop-04",
-          "name": "Jimin",
-          "url": "fake-call/k-pop/k-pop-04.mp4",
-          "thumbnail": "fake-call/k-pop/k-pop-04-thumb.png"
         }
       ]
     },
