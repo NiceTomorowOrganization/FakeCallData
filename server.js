@@ -146,12 +146,19 @@ const server = http.createServer(async (req, res) => {
     const key = dataMatch[1];
     const ds = DATASETS[key];
     if (!ds) return sendJson(res, 404, { error: 'Dataset không tồn tại' });
-    const filePath = path.join(ROOT, ds.file);
+    // variant=review → đọc/ghi file *-review.json (vd fakecalls-review.json), cùng cấp với file gốc
+    const variant = parsed.query.variant === 'review' ? 'review' : 'production';
+    const prodPath = path.join(ROOT, ds.file);
+    const filePath = variant === 'review'
+      ? path.join(ROOT, ds.file.replace(/\.json$/, '-review.json'))
+      : prodPath;
 
     if (req.method === 'GET') {
-      fs.readFile(filePath, 'utf8', (err, txt) => {
+      // Bản review chưa tồn tại → trả về nội dung production (xem như khởi tạo từ production)
+      const readPath = (variant === 'review' && !fs.existsSync(filePath)) ? prodPath : filePath;
+      fs.readFile(readPath, 'utf8', (err, txt) => {
         if (err) return sendJson(res, 500, { error: 'Không đọc được file: ' + err.message });
-        try { sendJson(res, 200, { type: ds.type, label: ds.label, data: JSON.parse(txt) }); }
+        try { sendJson(res, 200, { type: ds.type, label: ds.label, variant, data: JSON.parse(txt) }); }
         catch (e) { sendJson(res, 500, { error: 'JSON lỗi: ' + e.message }); }
       });
       return;

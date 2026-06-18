@@ -25,7 +25,9 @@
       "Bash(git add *)",
       "Bash(git commit -m ' *)",
       "Bash(ngrok --version)",
-      "Bash(curl -s -o /dev/null -w \"local 4321: %{http_code}\\\\n\" http://localhost:4321)"
+      "Bash(curl -s -o /dev/null -w \"local 4321: %{http_code}\\\\n\" http://localhost:4321)",
+      "Bash(ngrok http *)",
+      "Bash(node *)"
     ]
   }
 }
